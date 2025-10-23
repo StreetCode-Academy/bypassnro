@@ -48,11 +48,11 @@
 			<UserAccounts>
 				<LocalAccounts>
 					<LocalAccount wcm:action="add">
-						<Name>Admin</Name>
-						<DisplayName></DisplayName>
+						<Name>StreetCode Academy</Name>
+						<DisplayName>StreetCode Academy</DisplayName>
 						<Group>Administrators</Group>
 						<Password>
-							<Value></Value>
+							<Value>streetcode</Value>
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
@@ -68,11 +68,11 @@
 				</LocalAccounts>
 			</UserAccounts>
 			<AutoLogon>
-				<Username>Admin</Username>
+				<Username>StreetCode Academy</Username>
 				<Enabled>true</Enabled>
 				<LogonCount>1</LogonCount>
 				<Password>
-					<Value></Value>
+					<Value>streetcode</Value>
 					<PlainText>true</PlainText>
 				</Password>
 			</AutoLogon>
@@ -125,13 +125,13 @@ $selectors = @(
 	'Microsoft.WindowsMaps';
 	'Microsoft.MixedReality.Portal';
 	'Microsoft.BingNews';
-	'Microsoft.WindowsNotepad';
+	<!-- REMOVED: 'Microsoft.WindowsNotepad'; -->
 	'Microsoft.MicrosoftOfficeHub';
 	'Microsoft.Office.OneNote';
 	'Microsoft.OutlookForWindows';
 	'Microsoft.MSPaint';
 	'Microsoft.People';
-	'Microsoft.Windows.Photos';
+	<!-- REMOVED: 'Microsoft.Windows.Photos'; -->
 	'Microsoft.PowerAutomateDesktop';
 	'MicrosoftCorporationII.QuickAssist';
 	'Microsoft.SkypeApp';
@@ -206,9 +206,9 @@ $selectors = @(
 	'Language.Speech';
 	'Language.TextToSpeech';
 	'App.StepsRecorder';
-	'Hello.Face.18967';
-	'Hello.Face.Migration.18967';
-	'Hello.Face.20134';
+	<!-- REMOVED: 'Hello.Face.18967'; -->
+	<!-- REMOVED: 'Hello.Face.Migration.18967'; -->
+	<!-- REMOVED: 'Hello.Face.20134'; -->
 	'Media.WindowsMediaPlayer';
 	'Microsoft.Windows.WordPad';
 );
@@ -325,9 +325,7 @@ $scripts = @(
 		reg.exe add "HKCR\txtfilelegacy" /v FriendlyTypeName /t REG_EXPAND_SZ /d "@C:\Windows\system32\notepad.exe,-469" /f;
 		reg.exe add "HKCR\txtfilelegacy" /ve /t REG_SZ /d "Text Document" /f;
 	};
-	{
-		Remove-Item -LiteralPath 'C:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk', 'C:\Windows\System32\OneDriveSetup.exe', 'C:\Windows\SysWOW64\OneDriveSetup.exe' -ErrorAction 'Continue';
-	};
+	<!-- REMOVED OneDrive installer/file deletions to keep OneDrive -->
 	{
 		Remove-Item -LiteralPath 'Registry::HKLM\Software\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\OutlookUpdate' -Force -ErrorAction 'SilentlyContinue';
 	};
@@ -427,9 +425,7 @@ $scripts = @(
 	{
 		reg.exe add "HKU\DefaultUser\Software\Microsoft\Notepad" /v ShowStoreBanner /t REG_DWORD /d 0 /f;
 	};
-	{
-		Remove-ItemProperty -LiteralPath 'Registry::HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'OneDriveSetup' -Force -ErrorAction 'Continue';
-	};
+	<!-- REMOVED OneDrive Run key deletion to keep OneDriveSetup -->
 	{
 		reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v AppCaptureEnabled /t REG_DWORD /d 0 /f;
 	};
